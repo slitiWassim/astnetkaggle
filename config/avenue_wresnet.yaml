@@ -28,8 +28,8 @@ MODEL:
   INIT_WEIGHTS: true
   PRETRAINED: '../../datasets/seg_weights/wider_resnet38.pth.tar'
   IMAGE_SIZE:
-    - 224
-    - 288
+    - 192
+    - 320
   MEMORY_SIZE: 5
   ENCODED_FRAMES: 4
   DECODED_FRAMES: 0
