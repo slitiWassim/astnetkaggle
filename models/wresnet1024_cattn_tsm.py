@@ -54,7 +54,7 @@ class ASTNet(nn.Module):
         
         
         # Quantization Layer
-        self.vq = Quantizer(channels[3],codebook_size =128,Quantizer_name='ResidualVQ')
+        #self.vq = Quantizer(channels[3],codebook_size =128,Quantizer_name='ResidualVQ')
         
 
         
@@ -99,7 +99,7 @@ class ASTNet(nn.Module):
 
         initialize_weights(self.conv_x0, self.conv_x2, self.conv_x8)
         initialize_weights(self.up2, self.up4, self.up8)
-        initialize_weights(self.vq)
+        #initialize_weights(self.vq)
         initialize_weights(self.conv2,self.conv0,self._pre_vq_conv )
         initialize_weights(self.attn)
         initialize_weights(self.final)
@@ -139,7 +139,7 @@ class ASTNet(nn.Module):
 
         ## Apply Quantization to the Encoder output
         x8 =self._pre_vq_conv(x8)
-        x8 , _ =self.vq(x8) # During training, retrieve the _loss_commit to optimize the model.
+       #x8 , _ =self.vq(x8) # During training, retrieve the _loss_commit to optimize the model.
         #x2 , _loss_commit2 =self.vq2(x2) # During training, retrieve the _loss_commit to optimize the model.
         #x0 , _loss_commit0 =self.vq0(x0) # During training, retrieve the _loss_commit to optimize the model.
 
@@ -194,7 +194,7 @@ class ASTNet(nn.Module):
         
         ## Apply Quantization to the Encoder output
         x8 = self._pre_vq_conv(x8)
-        x8 , _loss_commit =self.vq(x8) # During training, retrieve the _loss_commit to optimize the model.
+        #x8 , _loss_commit =self.vq(x8) # During training, retrieve the _loss_commit to optimize the model.
         #x2 , _loss_commit2 =self.vq2(x2) # During training, retrieve the _loss_commit to optimize the model.
         #x0 , _loss_commit0 =self.vq0(x0) # During training, retrieve the _loss_commit to optimize the model.
 
@@ -210,9 +210,9 @@ class ASTNet(nn.Module):
         
         ''' --- End of Decoder Part --- '''
 
-        loss_commit = self._commitment_cost * _loss_commit 
+        #loss_commit = self._commitment_cost * _loss_commit 
 
-        return self.final(x) ,loss_commit
+        return self.final(x) ,0
     
 
 
