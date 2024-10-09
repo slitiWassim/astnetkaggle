@@ -10,7 +10,7 @@ from models.Quantizer import Quantizer
 import math
 
 logger = logging.getLogger(__name__)
-embedding_dim = 128
+embedding_dim = 256
 
 
 class ASTNet(nn.Module):
